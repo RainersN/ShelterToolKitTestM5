@@ -1,0 +1,8 @@
+Untested branches -
+
+AnimalCsvParser.parseFile: the empty-file (header == null) is never tested.
+AnimalCsvParser.parseRow: only one side of conditions like name.isEmpty() || species.isEmpty() is covered. null rows and missing names or species aren’t tested.
+
+Would tests catch real bugs?
+Empty file: probably not. The early return is redundant, because the loop would give the same result anyway.
+Compound conditions: yes. If someone changed || to && or dropped a check, the current tests would still pass, but these would fail.
